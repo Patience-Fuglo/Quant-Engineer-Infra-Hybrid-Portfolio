@@ -1,0 +1,8 @@
+{
+  "name": "Python Dev Container",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "settings": {},
+  "postCreateCommand": "if [ -f requirements.txt ]; then pip install -r requirements.txt; fi"
+}
