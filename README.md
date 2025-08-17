@@ -1,50 +1,92 @@
-# Quant Engineer Infra Hybrid Portfolio
+# Quant Greeks CLI
 
-Welcome to my Quant Engineer Infra Hybrid Portfolio! This repository showcases a comprehensive suite of projects spanning quantitative research, machine learning, systematic trading, portfolio analytics, and infrastructure engineering for modern finance.
-
-## 🚀 About Me
-
-Aspiring Quantitative Engineer with a passion for building robust, data-driven solutions in finance. Skilled in Python, financial modeling, statistical analysis, and scalable infrastructure.
-
-- **LinkedIn:** [Your LinkedIn](https://linkedin.com/in/your-profile)
-- **GitHub:** [Your GitHub](https://github.com/your-username)
+A beginner-friendly command-line interface (CLI) tool to calculate the Greeks (Delta, Gamma, Theta, Vega, Rho) for European options using the Black-Scholes model. Built for learning, portfolio demonstration, and practical quant engineering.
 
 ---
 
-## 🗂️ Portfolio Structure
+## Features
 
-| Project | Description |
-|---------|-------------|
-| [01-quant-greeks-cli](./01-quant-greeks-cli) | Command-line tool for calculating option Greeks (Delta, Gamma, Vega, Theta, Rho) using Black-Scholes. |
-| [02-math-for-quants](./02-math-for-quants) | Core mathematics, probability, and statistics for quantitative finance. |
-| [03-financial-models](./03-financial-models) | Implementation of pricing models such as Black-Scholes and Binomial trees. |
-| [04-data-fetching](./04-data-fetching) | Data ingestion modules and financial data APIs. |
-| [05-market-data-ingestion](./05-market-data-ingestion) | Real-time and historical market data pipelines. |
-| [06-streaming-pipeline](./06-streaming-pipeline) | Streaming systems with Redis, Kafka, etc. |
-| [07-database-layer](./07-database-layer) | Database solutions: ClickHouse, PostgreSQL, time series storage. |
-| [08-fastapi-service](./08-fastapi-service) | FastAPI microservices for quant analytics. |
-| [09-monitoring-logging](./09-monitoring-logging) | Monitoring and logging: Prometheus, Grafana, logging best practices. |
-| [10-backtesting-framework](./10-backtesting-framework) | Backtesting engines for systematic strategies. |
-| [11-portfolio-analytics](./11-portfolio-analytics) | Portfolio analysis: risk metrics, Sharpe, Sortino, etc. |
-| [12-machine-learning-for-quants](./12-machine-learning-for-quants) | Machine learning models and pipelines for finance. |
-| [13-quant-research](./13-quant-research) | Research notebooks: EDA, feature engineering, hypothesis testing. |
-| [14-strategy-development](./14-strategy-development) | Alpha research and systematic trading strategies. |
-| [15-trading-system](./15-trading-system) | Trade execution, order management, live trading systems. |
-| [16-final-capstone](./16-final-capstone) | End-to-end capstone project combining multiple components. |
+- **Calculate all major Greeks** for both call and put options
+- **User-friendly CLI** with clear arguments and help messages
+- Modular, extensible codebase (best practice: `src/` layout)
+- Readable output for easy interpretation
 
 ---
 
-## 📝 How to Use
+## Quickstart
 
-1. Browse each project folder for code, documentation, and usage instructions.
-2. See the individual `README.md` in each sub-folder for details.
+### 1. Clone the main portfolio repository and set up your environment
+
+```bash
+git clone https://github.com/Patience-Fuglo/Quant-Engineer-Infra-Hybrid-Portfolio.git
+cd Quant-Engineer-Infra-Hybrid-Portfolio/01-quant-greeks-cli
+python3 -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+pip install -e .
+```
+
+### 2. Run the CLI
+
+```bash
+python -m quant_greeks_cli.main --spot 100 --strike 100 --rate 0.01 --vol 0.2 --expiry 1 --option call
+```
+
+#### Example Output
+
+```
+Delta: 0.5398
+Gamma: 0.0199
+Theta: -0.0064
+Vega: 0.3989
+Rho: 0.3846
+```
 
 ---
 
-## 📫 Contact
+## Argument Reference
 
-For collaboration or questions, please reach out via [LinkedIn](https://linkedin.com/in/your-profile) or [GitHub](https://github.com/your-username).
+| Argument      | Description                                        | Example Value         |
+|---------------|----------------------------------------------------|----------------------|
+| `--spot`      | Spot price of the underlying asset                 | `100`                |
+| `--strike`    | Strike price of the option                         | `100`                |
+| `--rate`      | Risk-free interest rate (default: `0.01`)          | `0.01`               |
+| `--vol`       | Volatility as a decimal (e.g., 0.2 for 20%)        | `0.2`                |
+| `--expiry`    | Time to expiry in years (e.g., 0.5 = 6 months)     | `1`                  |
+| `--option`    | Option type: `call` or `put`                       | `call`               |
 
 ---
 
-*Thank you for visiting my quant engineering portfolio!*
+## Project Structure
+
+```
+01-quant-greeks-cli/
+├── .gitignore
+├── .venv/
+├── README.md
+├── setup.py
+├── src/
+│   └── quant_greeks_cli/
+│        ├── __init__.py
+│        ├── greeks.py
+│        └── main.py
+└── tests/
+     └── test_greeks.py
+```
+
+---
+
+## Learning Outcomes
+
+- Python CLI construction with `argparse`
+- Modular packaging and environment management
+- Basics of Black-Scholes and Greeks in options pricing
+- Professional repo hygiene and documentation
+- Test-driven development basics
+
+---
+
+## License
+
+This project is open-source and available under the MIT License.
+
+---
