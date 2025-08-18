@@ -6,7 +6,7 @@ def test_call_option_greeks():
     greeks = black_scholes_greeks(S, K, r, sigma, T, "call")
     assert abs(greeks["delta"] - 0.5596) < 0.01
     assert abs(greeks["gamma"] - 0.0197) < 0.01
-    assert abs(greeks["theta"] + 0.0121) < 0.01  # theta negative
+    assert abs(greeks["theta"] + 0.0121) < 0.01  # theta is negative
     assert abs(greeks["vega"] - 0.3945) < 0.01
     assert abs(greeks["rho"] - 0.4753) < 0.01
 
@@ -20,5 +20,6 @@ def test_put_option_greeks():
     assert abs(greeks["rho"] + 0.5179) < 0.01
 
 def test_invalid_option_type():
+    S, K, r, sigma, T = 100, 100, 0.01, 0.2, 1
     with pytest.raises(ValueError):
-        black_scholes_greeks(100, 100, 0.01, 0.2, 1, "invalid")
+        black_scholes_greeks(S, K, r, sigma, T, "invalid")
