@@ -2,7 +2,7 @@
 
 A beginner-friendly command-line interface (CLI) tool to calculate the Greeks (Delta, Gamma, Theta, Vega, Rho) for European options using the Black-Scholes model. Built for learning, portfolio demonstration, and practical quant engineering.
 
----
+---[![CI](https://github.com/Patience-Fuglo/Quant-Engineer-Infra-Hybrid-Portfolio/actions/workflows/pytest.yml/badge.svg)](https://github.com/Patience-Fuglo/Quant-Engineer-Infra-Hybrid-Portfolio/actions)
 
 ## Features
 
