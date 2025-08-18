@@ -90,3 +90,5 @@ Rho: 0.3846
 This project is open-source and available under the MIT License.
 
 ---
+
+[![CI](https://github.com/Patience-Fuglo/Quant-Engineer-Infra-Hybrid-Portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/Patience-Fuglo/Quant-Engineer-Infra-Hybrid-Portfolio/actions/workflows/ci.yml)
