@@ -1,43 +1,40 @@
 import pytest
 from quant_greeks_cli.greeks import black_scholes_greeks
 
-def test_black_scholes_greeks_call():
-    greeks = black_scholes_greeks(
-        spot=100, strike=100, rate=0.01, vol=0.2, expiry=1, option_type="call"
-    )
-    assert isinstance(greeks, dict)
-    assert "delta" in greeks
+def test_invalid_option_type():
+    with pytest.raises(ValueError, match="option_type must be 'call' or 'put'"):
+        black_scholes_greeks(100, 100, 0.01, 0.2, 1, "invalid")
 
-def test_black_scholes_greeks_put():
-    greeks = black_scholes_greeks(
-        spot=100, strike=100, rate=0.01, vol=0.2, expiry=1, option_type="put"
-    )
-    assert isinstance(greeks, dict)
-    assert "delta" in greeks
+def test_zero_spot():
+    with pytest.raises(ValueError, match="Spot price must be greater than 0."):
+        black_scholes_greeks(0, 100, 0.01, 0.2, 1, "call")
 
-def test_black_scholes_greeks_invalid_option_type():
-    with pytest.raises(ValueError):
-        black_scholes_greeks(
-            spot=100, strike=100, rate=0.01, vol=0.2, expiry=1, option_type="invalid"
-        )
+def test_zero_strike():
+    with pytest.raises(ValueError, match="Strike price must be greater than 0."):
+        black_scholes_greeks(100, 0, 0.01, 0.2, 1, "put")
 
-def test_black_scholes_greeks_zero_volatility():
-    # Covers potential edge case for volatility = 0
-    greeks = black_scholes_greeks(
-        spot=100, strike=100, rate=0.01, vol=1e-10, expiry=1, option_type="call"
-    )
-    assert isinstance(greeks, dict)
+def test_negative_vol():
+    with pytest.raises(ValueError, match="Volatility must be non-negative."):
+        black_scholes_greeks(100, 100, 0.01, -0.2, 1, "call")
 
-def test_black_scholes_greeks_zero_expiry():
-    # Covers potential edge case for expiry = 0
-    greeks = black_scholes_greeks(
-        spot=100, strike=100, rate=0.01, vol=0.2, expiry=1e-10, option_type="call"
-    )
-    assert isinstance(greeks, dict)
+def test_negative_expiry():
+    with pytest.raises(ValueError, match="Expiry must be non-negative."):
+        black_scholes_greeks(100, 100, 0.01, 0.2, -1, "put")
 
-def test_black_scholes_greeks_negative_inputs():
-    # Should raise error for negative input
-    with pytest.raises(ValueError):
-        black_scholes_greeks(
-            spot=-100, strike=100, rate=0.01, vol=0.2, expiry=1, option_type="call"
-        )
+def test_zero_volatility_edge_case():
+    res = black_scholes_greeks(100, 90, 0.05, 0.0, 1, "call")
+    assert res["gamma"] == 0.0
+    assert res["vega"] == 0.0
+    assert res["theta"] == 0.0
+    assert res["rho"] == 0.0
+    assert "price" in res
+    assert "delta" in res
+
+def test_zero_expiry_edge_case():
+    res = black_scholes_greeks(100, 90, 0.05, 0.2, 0.0, "put")
+    assert res["gamma"] == 0.0
+    assert res["vega"] == 0.0
+    assert res["theta"] == 0.0
+    assert res["rho"] == 0.0
+    assert "price" in res
+    assert "delta" in res

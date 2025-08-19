@@ -153,3 +153,19 @@ def test_non_negative_float_nonfloat():
     with pytest.raises(argparse.ArgumentTypeError) as exc:
         non_negative_float("notanumber")
     assert "is not a valid float" in str(exc.value)
+
+def test_main_with_dividend(monkeypatch, capsys):
+    args = [
+        "main.py",
+        "--option", "call",
+        "--spot", "100",
+        "--strike", "100",
+        "--rate", "0.01",
+        "--vol", "0.2",
+        "--expiry", "1",
+        "--dividend", "0.03"
+    ]
+    monkeypatch.setattr(sys, "argv", args)
+    main.main()
+    out = capsys.readouterr()
+    assert "Delta" in out.out
