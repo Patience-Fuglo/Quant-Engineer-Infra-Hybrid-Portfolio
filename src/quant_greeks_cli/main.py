@@ -43,11 +43,11 @@ def main():
             f"Calculating Greeks for {args.option} option: S={args.spot}, K={args.strike}, r={args.rate}, σ={args.vol}, T={args.expiry}"
         )
         greeks = black_scholes_greeks(
-            S=args.spot,
-            K=args.strike,
-            r=args.rate,
-            sigma=args.vol,
-            T=args.expiry,
+            spot=args.spot,
+            strike=args.strike,
+            rate=args.rate,
+            vol=args.vol,
+            expiry=args.expiry,
             option_type=args.option,
         )
         for greek, value in greeks.items():

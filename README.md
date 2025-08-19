@@ -74,6 +74,20 @@ Rho: 0.3846
 ```
 
 ---
+## Test Coverage
+
+Your project is fully tested with **100% code coverage** on all modules.
+
+| File                                    | Statements | Missed | Coverage |
+|------------------------------------------|------------|--------|----------|
+| 01-quant-greeks-cli/src/quant_greeks_cli/__init__.py | 0          | 0      | 100%     |
+| 01-quant-greeks-cli/src/quant_greeks_cli/greeks.py   | 19         | 0      | 100%     |
+| 01-quant-greeks-cli/src/quant_greeks_cli/main.py     | 40         | 0      | 100%     |
+| **TOTAL**                               | **59**     | **0**  | **100%** |
+
+![coverage-badge](https://img.shields.io/badge/coverage-100%25-brightgreen)
+
+You can add this badge and table to your README to showcase your test quality and reliability!
 
 ## Learning Outcomes
 
