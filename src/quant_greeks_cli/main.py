@@ -1,28 +1,15 @@
 import argparse
-import logging
 import sys
-
 from quant_greeks_cli.greeks import black_scholes_greeks
-
-logging.basicConfig(level=logging.INFO)
 
 def positive_float(value):
     try:
-        f = float(value)
-        if f <= 0:
-            raise argparse.ArgumentTypeError(f"{value} must be a positive number.")
-        return f
+        fvalue = float(value)
     except ValueError:
-        raise argparse.ArgumentTypeError(f"{value} is not a valid float.")
-
-def non_negative_float(value):
-    try:
-        f = float(value)
-        if f < 0:
-            raise argparse.ArgumentTypeError(f"{value} must be a non-negative number.")
-        return f
-    except ValueError:
-        raise argparse.ArgumentTypeError(f"{value} is not a valid float.")
+        raise argparse.ArgumentTypeError(f"{value} is not a valid float value")
+    if fvalue <= 0:
+        raise argparse.ArgumentTypeError(f"{value} is not positive")
+    return fvalue
 
 def main():
     parser = argparse.ArgumentParser(
@@ -39,9 +26,6 @@ def main():
     args = parser.parse_args()
 
     try:
-        logging.info(
-            f"Calculating Greeks for {args.option} option: S={args.spot}, K={args.strike}, r={args.rate}, σ={args.vol}, T={args.expiry}"
-        )
         greeks = black_scholes_greeks(
             spot=args.spot,
             strike=args.strike,
