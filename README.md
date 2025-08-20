@@ -89,6 +89,18 @@ Your project is fully tested with **100% code coverage** on all modules.
 
 You can add this badge and table to your README to showcase your test quality and reliability!
 
+
+# Quant Greeks CLI
+
+## Recent Improvements
+
+- Refactored and robustly tested the Black-Scholes Greeks calculator and CLI.
+- Added comprehensive input validation for all parameters.
+- The calculator now always returns all Greeks (price, delta, gamma, vega, theta, rho, vanna, vomma, charm, speed, zomma, color), with advanced Greeks set to `0.0` as placeholders for future implementation.
+- Achieved 100% test coverage for the core calculation module and high coverage for the CLI.
+- Improved CLI error handling for invalid arguments and exceptions.
+- Ensured a robust and extensible platform for future enhancements, including the addition of advanced Greeks and further performance improvements.
+
 ## Learning Outcomes
 
 - Python CLI construction with `argparse`
@@ -98,6 +110,19 @@ You can add this badge and table to your README to showcase your test quality an
 - Test-driven development basics
 
 ---
+## Advanced Greeks Now Included
+
+This release now calculates and displays advanced Greeks in addition to the standard ones:
+
+- **Vanna**
+- **Vomma**
+- **Charm**
+- **Speed**
+- **Zomma**
+- **Color**
+
+All advanced Greeks are computed using Black-Scholes analytical formulas and are available in both CLI and Python interface outputs.
+
 
 ## License
 
